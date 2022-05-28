@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+
+<div class="container-fluid">
+    {% if user.is_developer %}
+    <h3>Hello {{ dev_name }}!</h3>
+    <p>
+        <a href="{% url 'apps:create' %}"> Create new app </a>
+    </p>
+    <p>
+        <a href="{% url 'devs:myapps'%}"> My apps </a>
+    </p>
+    {% else %}
+    <p>
+        <a href="{% url 'devs:join' %}"> Join to developers </a>
+    </p>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+<div class="container-fluid">
+    <h3>{{ app.name }}</h3>
+    <p>
+        {% if not user.is_anonymous %}
+<!--        <a href="{{ app.apkfile.url}}"> download </a>-->
+        <a href="{% url 'apps:download' app.pk %}"> download </a>
+        {% else %}
+        <a href="{% url 'account:login' %}"> Login to download </a>
+        {% endif %}
+    </p>
+    <div>
+        <p>Description:</p>
+        <span>
+            {{ app.desc }}
+        </span>
+    </div>
+    <br>
+    <table>
+        <tbody>
+        <tr>
+        </tr>
+        <tr>
+            <td>category:</td>
+            <td>{{ app.kind }}</td>
+        </tr>
+        <tr>
+            <td>Downloaded: </td>
+            <td>{{ app.download_counter }}</td>
+        </tr>
+        <tr>
+            <td>Rating: </td>
+            <td>{{ app.average_rating }}</td>
+        </tr>
+        </tbody>
+    </table>
+    {% if rform %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ rform.as_table }}
+        <button type="submit">Submit</button>
+    </form>
+    {% endif %}
+
+</div>
+<hr>
+<div class="container-fluid">
+    <h4>Comments</h4>
+    {% for comment in app.comment_set.all %}
+    <b>{{ comment.user }}</b> said <b>{{ comment.created_on }}</b>
+    <p>{{ comment.comment }}</p>
+    {% endfor %}
+    {% if cform %}
+    <h5>Add a comment</h5>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ cform.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

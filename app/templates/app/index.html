@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+{% if user.is_anonymous %}
+<div class="container-fluid">
+    <p>
+        Welcome to ApkStore - simple store of Android Applications.<br>
+        To see catalog please register or login.
+    </p>
+</div>
+{% else %}
+<h1>Hello {{ user }}!</h1>
+{% endif %}
+
+
+{% endblock %}

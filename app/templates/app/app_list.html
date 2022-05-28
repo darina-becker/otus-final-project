@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+<div class="container-fluid">
+<h3>Apps</h3>
+<table class="table table-borderless">
+    <thead>
+    <tr>
+        <th>App name</th>
+        <th>Category</th>
+        <th>Author</th>
+        <th>Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for app in object_list %}
+    <tr>
+        <td><a href="{% url 'apps:detail' app.pk %}">{{app.name}}</a></td>
+        <td>{{app.kind}}</td>
+        <td>{{app.author}}</td>
+        <td>{{app.average_rating}}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="4">No apps yet.</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+</div>
+
+<!--% for app in all_apps %-->
+<!--<li>-->
+<!--    <a href="% url 'apps:detail' app.pk %">-->
+<!--        {{ app }}-->
+<!--    </a>-->
+<!--</li>-->
+<!--% endfor %-->

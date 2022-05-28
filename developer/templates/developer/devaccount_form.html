@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+<div class="user-creation-form container-fluid">
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            {{ form.as_p }}
+        </div>
+        <input type="submit" value="join" class="btn btn-primary">
+    </form>
+</div>
+{% endblock %}

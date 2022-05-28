@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="mb-3">
+            <input type="submit" value="upload" class="btn btn-primary">
+        </div>
+    </form>
+</div>
+
+{% endblock  %}

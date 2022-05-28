@@ -1,0 +1,1 @@
+python3 manage.py createsuperuser --username admin --email admin@apkstore.local 
